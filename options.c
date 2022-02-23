@@ -28,7 +28,7 @@ const opt_t *options;
 
 void print_usage(void)
 {
-	printf("usage: nsxiv [-abcfhiopqrtvZ0] [-A FRAMERATE] [-e WID] [-G GAMMA] "
+	printf("usage: nsxiv [-abcdfhiopqrtvZ0] [-A FRAMERATE] [-e WID] [-G GAMMA] "
 	       "[-g GEOMETRY] [-N NAME] [-n NUM] [-S DELAY] [-s MODE] "
 	       "[-z ZOOM] FILES...\n");
 }
@@ -65,6 +65,7 @@ void parse_options(int argc, char **argv)
 	_options.from_stdin = false;
 	_options.to_stdout = false;
 	_options.using_null = false;
+	_options.dmenu = false;
 	_options.recursive = false;
 	_options.startnum = 0;
 
@@ -86,7 +87,7 @@ void parse_options(int argc, char **argv)
 	_options.clean_cache = false;
 	_options.private_mode = false;
 
-	while ((opt = getopt(argc, argv, "A:abce:fG:g:hin:N:opqrS:s:T:tvZz:0")) != -1) {
+	while ((opt = getopt(argc, argv, "A:abce:fG:g:hin:N:odpqrS:s:T:tvZz:0")) != -1) {
 		switch (opt) {
 			case '?':
 				print_usage();
@@ -141,6 +142,9 @@ void parse_options(int argc, char **argv)
 				break;
 			case 'o':
 				_options.to_stdout = true;
+				break;
+			case 'd':
+				_options.dmenu = true;
 				break;
 			case 'p':
 				_options.private_mode = true;

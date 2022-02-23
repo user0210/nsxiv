@@ -44,8 +44,12 @@ bool cg_quit(arg_t status)
 	return None; /* silence tcc warning */
 }
 
-bool cg_switch_mode(arg_t _)
+bool cg_switch_mode(arg_t ignore_d)
 {
+	if (options->dmenu && !ignore_d) {
+		printf("%s\n", files[fileidx].name);
+		exit(EXIT_SUCCESS);
+	}
 	if (mode == MODE_IMAGE) {
 		if (tns.thumbs == NULL)
 			tns_init(&tns, files, &filecnt, &fileidx, &win);

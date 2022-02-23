@@ -83,7 +83,8 @@ static const KeySym KEYHANDLER_ABORT = XK_Escape;
 static const keymap_t keys[] = {
 	/* modifiers    key               function              argument */
 	{ 0,            XK_q,             g_quit,               0 },
-	{ 0,            XK_Return,        g_switch_mode,        None },
+	{ 0,            XK_Return,        g_switch_mode,        0 },
+	{ ControlMask,  XK_Return,        g_switch_mode,        1 },
 	{ 0,            XK_f,             g_toggle_fullscreen,  None },
 	{ 0,            XK_b,             g_toggle_bar,         None },
 	{ ControlMask,  XK_x,             g_prefix_external,    None },
